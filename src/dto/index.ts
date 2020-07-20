@@ -1,2 +1,2 @@
-export * from './BadRequest.dto';
-export * from './HealthCheck.dto';
+export * from "./BadRequest.dto";
+export * from "./HealthCheck.dto";

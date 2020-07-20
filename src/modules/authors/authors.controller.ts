@@ -5,32 +5,32 @@ import {
   Get,
   Param,
   Post,
-  Put,
-} from '@nestjs/common';
+  Put
+} from "@nestjs/common";
 import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiOkResponse,
-  ApiTags,
-} from '@nestjs/swagger';
-import 'reflect-metadata';
-import { TransformClassToPlain } from 'class-transformer';
+  ApiTags
+} from "@nestjs/swagger";
+import "reflect-metadata";
+import { TransformClassToPlain } from "class-transformer";
 
-import { AuthorRequestDto } from './dto';
-import { AuthorResponseDto } from './dto/AuthorResponse.dto';
-import { AuthorsService } from './authors.service';
-import { BadRequestDto } from 'dto/BadRequest.dto';
+import { AuthorRequestDto } from "./dto";
+import { AuthorResponseDto } from "./dto/AuthorResponse.dto";
+import { AuthorsService } from "./authors.service";
+import { BadRequestDto } from "dto/BadRequest.dto";
 
-@ApiTags('Authors')
-@Controller('authors')
+@ApiTags("Authors")
+@Controller("authors")
 export class AuthorsController {
   constructor(private authorsService: AuthorsService) {}
 
   @ApiOkResponse({
     type: AuthorResponseDto,
-    isArray: true,
+    isArray: true
   })
   @ApiInternalServerErrorResponse()
   @Get()
@@ -40,25 +40,25 @@ export class AuthorsController {
   }
 
   @ApiOkResponse({
-    description: 'Author',
-    type: AuthorResponseDto,
+    description: "Author",
+    type: AuthorResponseDto
   })
   @ApiInternalServerErrorResponse()
-  @Get(':authorId')
+  @Get(":authorId")
   @TransformClassToPlain()
-  getOne(@Param('authorId') authorId: string) {
+  getOne(@Param("authorId") authorId: string) {
     return this.authorsService.getOne(authorId);
   }
 
   @ApiBody({
-    description: 'Author',
-    type: AuthorRequestDto,
+    description: "Author",
+    type: AuthorRequestDto
   })
   @ApiCreatedResponse({
-    type: AuthorResponseDto,
+    type: AuthorResponseDto
   })
   @ApiBadRequestResponse({
-    type: BadRequestDto,
+    type: BadRequestDto
   })
   @ApiInternalServerErrorResponse()
   @Post()
@@ -68,32 +68,32 @@ export class AuthorsController {
   }
 
   @ApiBody({
-    description: 'Author',
-    type: AuthorRequestDto,
+    description: "Author",
+    type: AuthorRequestDto
   })
   @ApiOkResponse({
-    type: AuthorResponseDto,
+    type: AuthorResponseDto
   })
   @ApiBadRequestResponse({
-    type: BadRequestDto,
+    type: BadRequestDto
   })
   @ApiInternalServerErrorResponse()
-  @Put(':authorId')
+  @Put(":authorId")
   @TransformClassToPlain()
   update(
-    @Param('authorId') authorId: string,
-    @Body() rawAuthor: AuthorRequestDto,
+    @Param("authorId") authorId: string,
+    @Body() rawAuthor: AuthorRequestDto
   ) {
     return this.authorsService.update(authorId, rawAuthor);
   }
 
   @ApiOkResponse()
   @ApiBadRequestResponse({
-    type: BadRequestDto,
+    type: BadRequestDto
   })
   @ApiInternalServerErrorResponse()
-  @Delete(':authorId')
-  async delete(@Param('authorId') authorId: string) {
+  @Delete(":authorId")
+  async delete(@Param("authorId") authorId: string) {
     await this.authorsService.delete(authorId);
   }
 }

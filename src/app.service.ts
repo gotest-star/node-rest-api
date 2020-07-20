@@ -1,12 +1,12 @@
-import { Get, Injectable } from '@nestjs/common';
-import { HealthCheckDto } from './dto/HealthCheck.dto';
+import { Get, Injectable } from "@nestjs/common";
+import { HealthCheckDto } from "./dto/HealthCheck.dto";
 
 @Injectable()
 export class AppService {
-  @Get('health-check')
+  @Get("health-check")
   healthCheck(): HealthCheckDto {
     return {
-      message: 'alive',
+      message: "alive"
     };
   }
 }

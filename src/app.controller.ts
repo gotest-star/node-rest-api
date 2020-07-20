@@ -1,15 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { HealthCheckDto } from './dto';
+import { Controller, Get } from "@nestjs/common";
+import { AppService } from "./app.service";
+import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { HealthCheckDto } from "./dto";
 
-@ApiTags('Health Check')
-@Controller('health-check')
+@ApiTags("Health Check")
+@Controller("health-check")
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @ApiOkResponse({
-    type: HealthCheckDto,
+    type: HealthCheckDto
   })
   @Get()
   healthCheck() {

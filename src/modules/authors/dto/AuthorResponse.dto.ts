@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from "@nestjs/swagger";
 
 export class AuthorResponseDto {
   @ApiProperty()
@@ -17,7 +17,7 @@ export class AuthorResponseDto {
   createdAt: string;
 
   @ApiProperty({
-    required: false,
+    required: false
   })
   updatedAt?: string;
 }

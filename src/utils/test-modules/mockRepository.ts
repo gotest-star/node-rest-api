@@ -1,4 +1,4 @@
-import { MongoRepository } from 'typeorm';
+import { MongoRepository } from "typeorm";
 
 export const mockRepository = <Entity>(repository: Entity, useValue?: any) => {
   const useClass = useValue ? undefined : repository;
@@ -6,7 +6,7 @@ export const mockRepository = <Entity>(repository: Entity, useValue?: any) => {
   return {
     useValue,
     useClass,
-    provide: getRepositoryToken(repository),
+    provide: getRepositoryToken(repository)
   };
 };
 
@@ -14,7 +14,7 @@ const getRepositoryToken = (entity: any) => {
   let token = entity.name;
 
   if (!(entity.prototype instanceof MongoRepository)) {
-    token = token + 'Repository';
+    token = token + "Repository";
   }
 
   return token;

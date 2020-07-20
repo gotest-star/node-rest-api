@@ -1,21 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
 
-import { BookModel } from 'database/models';
-import { BookRepository } from 'database/repositories';
-import { BookRequestDto } from './dto';
+import { BookModel } from "database/models";
+import { BookRepository } from "database/repositories";
+import { BookRequestDto } from "./dto";
 
 @Injectable()
 export class AuthorBooksService {
   constructor(
-    @InjectRepository(BookRepository) private bookRepository: BookRepository,
+    @InjectRepository(BookRepository) private bookRepository: BookRepository
   ) {}
 
   getAll(authorId: string): Promise<BookModel[]> {
     return this.bookRepository.find({
       where: {
-        author: authorId,
-      },
+        author: authorId
+      }
     });
   }
 
@@ -26,7 +26,7 @@ export class AuthorBooksService {
   create(authorId: string, rawBook: BookRequestDto): Promise<BookModel> {
     const book = this.bookRepository.create({
       author: authorId,
-      ...rawBook,
+      ...rawBook
     });
 
     return this.bookRepository.save(book);
@@ -35,12 +35,12 @@ export class AuthorBooksService {
   async update(
     authorId: string,
     bookId: string,
-    rawBook: BookRequestDto,
+    rawBook: BookRequestDto
   ): Promise<BookModel> {
     const book = await this.getOne(authorId, bookId);
     const rawBookFinal = this.bookRepository.create({
       ...book,
-      ...rawBook,
+      ...rawBook
     });
 
     return this.bookRepository.save(rawBookFinal);
@@ -49,7 +49,7 @@ export class AuthorBooksService {
   async delete(authorId: string, bookId: string): Promise<void> {
     await this.bookRepository.findOneAndDelete({
       id: bookId,
-      author: authorId,
+      author: authorId
     });
   }
 }

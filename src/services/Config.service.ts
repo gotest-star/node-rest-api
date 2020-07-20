@@ -4,7 +4,7 @@ class ConfigService {
   };
 
   constructor() {
-    this.configFiledValues = require('dotenv').config().parsed;
+    this.configFiledValues = require("dotenv").config().parsed;
   }
 
   get(name: string) {

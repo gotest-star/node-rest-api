@@ -4,12 +4,12 @@ import {
   ObjectIdColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { Exclude, Expose, Transform } from 'class-transformer';
+  UpdateDateColumn
+} from "typeorm";
+import { Exclude, Expose, Transform } from "class-transformer";
 
 @Exclude()
-@Entity({ name: 'authors', synchronize: false })
+@Entity({ name: "authors", synchronize: false })
 export class AuthorModel {
   @Expose()
   @ObjectIdColumn()
@@ -17,22 +17,22 @@ export class AuthorModel {
   id: ObjectID;
 
   @Expose()
-  @Column({ type: 'string' })
+  @Column({ type: "string" })
   firstName: string;
 
   @Expose()
-  @Column({ type: 'string' })
+  @Column({ type: "string" })
   lastName: string;
 
   @Expose()
-  @Column({ type: 'date' })
+  @Column({ type: "date" })
   birthday: string;
 
   @Expose()
-  @CreateDateColumn({ type: 'datetime' })
+  @CreateDateColumn({ type: "datetime" })
   createdAt: number;
 
   @Expose()
-  @UpdateDateColumn({ type: 'datetime' })
+  @UpdateDateColumn({ type: "datetime" })
   updatedAt: number;
 }

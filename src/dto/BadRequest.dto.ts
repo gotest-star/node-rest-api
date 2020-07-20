@@ -1,21 +1,21 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from "@nestjs/swagger";
 
 export class BadRequestDto {
   @ApiProperty({
     default: 400,
     type: Number,
-    example: 400,
+    example: 400
   })
   public statusCode: number;
 
   @ApiProperty({
-    example: [],
+    example: []
   })
   public message: string[];
 
   @ApiProperty({
-    default: 'Bad Request',
-    example: 'Bad Request',
+    default: "Bad Request",
+    example: "Bad Request"
   })
   public error: string;
 }
